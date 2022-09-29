@@ -2,6 +2,13 @@ provider "aws" {
 region = "us-east-2"  
 }
 
+resource "aws_eip" "lb" {
+  instance = aws_instance.web.id
+ tags = {
+    Name = "EIP for Websever Built by Terraform"
+    Owner = "Saidi Abdulramoni"
+}
+}
 
 resource "aws_instance" "websever" {
 ami = "ami-0f924dc71d44d23e2" 
