@@ -3,7 +3,7 @@ region = "us-east-2"
 }
 
 resource "aws_eip" "lb" {
-  instance = aws_instance.web.id
+  instance = aws_instance.websever.id
  tags = {
     Name = "EIP for Websever Built by Terraform"
     Owner = "Saidi Abdulramoni"
@@ -20,7 +20,11 @@ tags = {
     Name = "Websever Built by Terraform"
     Owner = "Saidi Abdulramoni"
 }
+lifecycle = {
+    create_before_destroy = true
 }
+}
+
 
 resource "aws_security_group" "web" {
     name = "Webserver-SG-Terraform"
